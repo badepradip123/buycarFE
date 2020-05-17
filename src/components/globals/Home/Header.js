@@ -29,8 +29,22 @@ const Styles = styled.div`
   }
 
   .navbar-nav .nav-link {
-    margin-left: 4rem;
+    margin-left: 2rem;
     font-size: 16px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .navbar-nav .nav-link {
+      border-bottom: 0;
+    }
+    .navbar-nav .nav-link:hover {
+      border-bottom: none;
+      color: ${setColor.primaryColor} !important;
+    }
+
+    .form-inline {
+      margin-left: 3% !important;
+    }
   }
 `;
 

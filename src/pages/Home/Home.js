@@ -5,6 +5,7 @@ import Slider from '../../components/globals/Slider';
 import firstImg from '../../assets/Images/brezza.jpg';
 import secondImg from '../../assets/Images/1.jpg';
 import thirdImg from '../../assets/Images/2.jpg';
+import FilterSection from '../../components/globals/Home/FilterSection';
 
 const projects = [
   {
@@ -29,6 +30,7 @@ export class Home extends Component {
       <div>
         <Header />
         <Slider data={projects} />
+        <FilterSection />
       </div>
     );
   }

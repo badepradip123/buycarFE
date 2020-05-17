@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { setColor, setFont } from '../../styles';
+import { setColor, setFont, setShadow } from '../../styles';
 const Globals = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Anton|Gugi|Lato|Roboto|Sofia&display=swap');
 
@@ -8,10 +8,16 @@ const Globals = createGlobalStyle`
  padding:0;
  box-sizing:border-box;
 }
+
+*:focus {
+    outline: none;
+    
+}
+
 body{
  font-size:100%;
  color:${setColor.mainBlack};
- background:${setColor.mainWhite};
+ background:${setColor.lightWhite};
  ${setFont.main};
  
 }
