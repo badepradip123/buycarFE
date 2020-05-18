@@ -6,8 +6,39 @@ import firstImg from '../../assets/Images/brezza.jpg';
 import secondImg from '../../assets/Images/1.jpg';
 import thirdImg from '../../assets/Images/2.jpg';
 import FilterSection from '../../components/globals/Home/FilterSection';
+import Slider2 from '../../components/globals/Slider2';
 
 const projects = [
+  {
+    img: firstImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    img: secondImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    img: thirdImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    img: firstImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    img: secondImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    img: thirdImg,
+    title: 'Breeza',
+    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
   {
     img: firstImg,
     title: 'Breeza',
@@ -31,6 +62,7 @@ export class Home extends Component {
         <Header />
         <Slider data={projects} />
         <FilterSection />
+        <Slider2 data={projects} />
       </div>
     );
   }

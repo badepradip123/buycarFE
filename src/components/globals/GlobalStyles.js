@@ -19,6 +19,7 @@ body{
  color:${setColor.mainBlack};
  background:${setColor.lightWhite};
  ${setFont.main};
+ overflow-x: hidden;
  
 }
 h1{
@@ -34,7 +35,7 @@ h4{
  font-size:1.2em;line-height:1.2;margin-bottom:1.25em;font-weight:bold;
 }
 h5{
- font-size:1em;margin-bottom:1.5em;font-weight:bold;
+ font-size:1em;font-weight:bold;
 }
 h6{
  font-size:1em;font-weight:bold;
