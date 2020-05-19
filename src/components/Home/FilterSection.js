@@ -1,10 +1,10 @@
 import React from 'react';
-import PrimaryDropDown from '../DropDown';
+import PrimaryDropDown from '../globals/DropDown';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { setColor, setRem } from '../../../styles';
+import { setColor, setRem } from '../../styles';
 import { MdSearch } from 'react-icons/md';
-import Icon from '../Icon';
+import Icon from '../globals/Icon';
 
 const Styles = styled.div`
   .mainContainer {

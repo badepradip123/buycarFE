@@ -9,7 +9,7 @@ import { setColor, setTransition } from '../../styles';
 const Styles = styled.div`
   .arrowStyle {
     position: absolute;
-    top: 50%;
+    top: 35%;
     z-index: 1;
   }
 

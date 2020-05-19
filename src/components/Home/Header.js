@@ -1,10 +1,12 @@
 import React from 'react';
 import { Navbar, Nav, Form, Button, Image } from 'react-bootstrap';
-import logo from '../../../assets/Images/logo.png';
-import { PrimaryBtnOutline } from '../Button';
+import { RiMenu2Line } from 'react-icons/ri';
+import logo from '../../assets/Images/logo.png';
+import { PrimaryBtnOutline } from '../globals/Button';
 import styled from 'styled-components';
-import { setColor, setShadow } from '../../../styles';
+import { setColor, setShadow } from '../../styles';
 import { Link } from 'react-router-dom';
+import Icon from '../globals/Icon';
 
 const Styles = styled.div`
   .navbar {
@@ -46,6 +48,10 @@ const Styles = styled.div`
       margin-left: 3% !important;
     }
   }
+
+  .navbar-toggler {
+    border: 0;
+  }
 `;
 
 const Header = () => {
@@ -55,7 +61,11 @@ const Header = () => {
         <Navbar.Brand className='ml-3' as={Link} to='/'>
           <Image className='logo' src={logo} />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Toggle aria-controls='basic-navbar-nav'>
+          <Icon>
+            <RiMenu2Line />
+          </Icon>
+        </Navbar.Toggle>
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mr-auto'>
             <Nav.Link as={Link} to='/'>
@@ -76,7 +86,9 @@ const Header = () => {
           </Nav>
           <Form inline>
             <PrimaryBtnOutline>
-              <Button variant='outline-primary'>Search</Button>
+              <Button as={Link} to='/login' variant='outline-primary'>
+                Sign In
+              </Button>
             </PrimaryBtnOutline>
           </Form>
         </Navbar.Collapse>

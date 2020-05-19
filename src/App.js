@@ -1,15 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Globals from './components/globals/GlobalStyles';
-
-const PageOne = () => {
-  return <div>PageOne</div>;
-};
-
-const PageTwo = () => {
-  return <div>PageTwo</div>;
-};
+import Login from './pages/LogIn/LogIn';
 
 function App() {
   return (
@@ -17,7 +10,7 @@ function App() {
       <Globals />
       <BrowserRouter>
         <Route path='/' exact component={Home} />
-        <Route path='/pageone' component={PageOne} />
+        <Route path='/login' component={Login} />
       </BrowserRouter>
     </div>
   );
