@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AuthWrapper } from '../../components/Auth/AuthWrapper';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
 
 const Styles = styled.div`
+  .auth-inner {
+    width: 650px !important;
+  }
   label {
     font-weight: 500;
   }
@@ -24,20 +27,10 @@ const Styles = styled.div`
     color: ${setColor.primaryColor};
   }
 
-  .register-here {
-    color: ${setColor.primaryColor};
-    font-size: 15px;
-    text-align: center;
-    position: absolute;
-    margin: 40px auto;
-    left: 43%;
-  }
-
   .btn-outline-primary {
     background-color: ${setColor.primaryColor};
     color: ${setColor.mainWhite};
     border-color: ${setColor.primaryColor};
-    position: relative;
 
     &:hover {
       color: ${setColor.primaryColor};
@@ -47,7 +40,7 @@ const Styles = styled.div`
   }
 `;
 
-class Login extends Component {
+class SignUp extends Component {
   state = {
     isValidated: false,
   };
@@ -65,14 +58,34 @@ class Login extends Component {
       <div>
         <AuthWrapper>
           <div className='auth-wrapper'>
-            <div className='auth-inner'>
+            <div className='signUp-inner'>
               <Styles>
                 <Form
                   noValidate
                   validated={this.state.isValidated}
                   onSubmit={this.handleSubmit}
                 >
-                  <h3>Sign In</h3>
+                  <h3>Sign Up</h3>
+                  <Form.Row>
+                    <Form.Group as={Col} md='6' controlId='validationCustom01'>
+                      <Form.Label>First name</Form.Label>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='First name'
+                      />
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md='6' controlId='validationCustom02'>
+                      <Form.Label>Last name</Form.Label>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='Last name'
+                      />
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                  </Form.Row>
                   <Form.Group controlId='formGroupEmail'>
                     <Form.Label>Email address</Form.Label>
 
@@ -92,6 +105,32 @@ class Login extends Component {
                       className='form-control'
                     />
                   </Form.Group>
+                  <Form.Group controlId='formGridAddress1'>
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control placeholder='1234 Main St' />
+                  </Form.Group>
+                  <Form.Group controlId='formGridAddress2'>
+                    <Form.Label>Address 2</Form.Label>
+                    <Form.Control placeholder='Apartment, studio, or floor' />
+                  </Form.Group>
+                  <Form.Group controlId='formGridCity'>
+                    <Form.Label>City</Form.Label>
+                    <Form.Control as='select' value='Choose...'>
+                      <option>Choose...</option>
+                      <option>...</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId='formGridState'>
+                    <Form.Label>State</Form.Label>
+                    <Form.Control as='select' value='Choose...'>
+                      <option>Choose...</option>
+                      <option>...</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId='formGridZip'>
+                    <Form.Label>Zip</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
                   <Form.Group>
                     <Form.Check
                       name='terms'
@@ -100,15 +139,11 @@ class Login extends Component {
                     />
                   </Form.Group>
                   <Button type='submit' variant='outline-primary' block>
-                    Log In
+                    Sign Up
                   </Button>{' '}
                   <Link className='forgot-password text-right' to='/'>
                     {' '}
                     Forgot Password?
-                  </Link>
-                  <Link className='register-here text-right' to='/'>
-                    {' '}
-                    New to CarDekho ?REGISTER here
                   </Link>
                 </Form>
               </Styles>
@@ -124,4 +159,4 @@ const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

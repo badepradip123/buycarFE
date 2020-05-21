@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Globals from './components/globals/GlobalStyles';
 import Login from './pages/LogIn/LogIn';
+import SignUp from './pages/SignUp/SignUp';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Route path='/' exact component={Home} />
         <Route path='/login' component={Login} />
+        <Route path='/signup' component={SignUp} />
       </BrowserRouter>
     </div>
   );
