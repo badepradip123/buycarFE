@@ -106,7 +106,7 @@ class Login extends Component {
                     {' '}
                     Forgot Password?
                   </Link>
-                  <Link className='register-here text-right' to='/'>
+                  <Link className='register-here text-right' to='/signup'>
                     {' '}
                     New to CarDekho ?REGISTER here
                   </Link>

@@ -4,15 +4,17 @@ import Home from './pages/Home/Home';
 import Globals from './components/globals/GlobalStyles';
 import Login from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
+import { ProductDetails } from './pages/ProductDetails/ProductDetails';
 
 function App() {
   return (
     <div>
       <Globals />
       <BrowserRouter>
-        <Route path='/' exact component={Home} />
+        {/* <Route path='/' exact component={Home} /> */}
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
+        <Route path='/' exact component={ProductDetails} />
       </BrowserRouter>
     </div>
   );
