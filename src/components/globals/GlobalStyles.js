@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import { setColor, setFont } from '../../styles';
 const Globals = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Anton|Gugi|Lato|Roboto|Sofia&display=swap');
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 *{
  margin:0;
@@ -41,37 +43,10 @@ h6{
  font-size:1em;font-weight:bold;
 }
 p{
- line-height:1.5;margin:0 0 1.5rem 0;
+ line-height:1.5;margin:0 0 1.2rem 0;
 }
 
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-}
 
-.auth-inner {
-  width: 450px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all .3s;
-}
-
-.auth-wrapper .form-control:focus {
-  border-color: #167bff;
-  box-shadow: none;
-}
-
-.auth-wrapper h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
 `;
 
 export default Globals;

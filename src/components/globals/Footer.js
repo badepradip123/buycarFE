@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { setColor, setFont } from '../../styles';
+import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import Icon from './Icon';
@@ -54,7 +54,7 @@ const Styles = styled.div`
 const Footer = () => {
   return (
     <Styles>
-      <div className='main-footer'>
+      <div className='main-footer mt-5'>
         <Container>
           <Row>
             <Col md={3} sm={6}>

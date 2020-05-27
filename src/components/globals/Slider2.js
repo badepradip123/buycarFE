@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Button, Col, Row } from 'react-bootstrap';
+import React from 'react';
+import { Card, Col } from 'react-bootstrap';
 import SlickSlider from 'react-slick';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import styled from 'styled-components';
@@ -68,7 +68,7 @@ const Styles = styled.div`
 `;
 
 function NextArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div className='arrowStyle right-0' onClick={onClick}>
       <Icon className='slideIcon' size={'2em'} color={setColor.primaryColor}>
@@ -79,7 +79,7 @@ function NextArrow(props) {
 }
 
 function PrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div className={'arrowStyle left-0'} onClick={onClick}>
       <Icon className='slideIcon' size={'2em'} color={setColor.primaryColor}>
@@ -131,7 +131,7 @@ const Slider2 = (props) => {
         {props.data.map((item, index) => {
           return (
             <Col>
-              <Card>
+              <Card onClick={() => window.open('/details')}>
                 <div className='inner'>
                   <Card.Img src={item.img} />
                 </div>

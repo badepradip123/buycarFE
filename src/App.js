@@ -5,16 +5,21 @@ import Globals from './components/globals/GlobalStyles';
 import Login from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 import { ProductDetails } from './pages/ProductDetails/ProductDetails';
+import Header from './components/Home/Header';
+import Footer from './components/globals/Footer';
 
 function App() {
   return (
     <div>
       <Globals />
+
       <BrowserRouter>
-        {/* <Route path='/' exact component={Home} /> */}
+        <Header />
+        <Route path='/' exact component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
-        <Route path='/' exact component={ProductDetails} />
+        <Route path='/details' component={ProductDetails} />
+        <Footer />
       </BrowserRouter>
     </div>
   );

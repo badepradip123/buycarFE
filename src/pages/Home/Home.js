@@ -60,11 +60,9 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <Header />
         <Slider data={projects} />
         <FilterSection />
         <Slider2 data={projects} />
-        <Footer />
       </div>
     );
   }
