@@ -131,11 +131,11 @@ const Slider2 = (props) => {
         {props.data.map((item, index) => {
           return (
             <Col>
-              <Card onClick={() => window.open('/details')}>
+              <Card onClick={() => window.open('/details', '_self')}>
                 <div className='inner'>
                   <Card.Img src={item.img} />
                 </div>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>{item.title}</Card.Title>
               </Card>
             </Col>
           );

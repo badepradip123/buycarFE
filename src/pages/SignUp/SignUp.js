@@ -5,6 +5,124 @@ import { AuthWrapper } from '../../components/Auth/AuthWrapper';
 import { Button, Form, Col } from 'react-bootstrap';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
+import { userSignUpRequest } from '../../store/actions/';
+
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isValidated: false,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+    }
+
+    this.setState({ isValidated: true });
+    this.props.userSignUpRequest(this.state);
+  }
+  render() {
+    return (
+      <div>
+        <AuthWrapper>
+          <div className='auth-wrapper'>
+            <div className='signUp-inner'>
+              <Styles>
+                <Form
+                  noValidate
+                  validated={this.state.isValidated}
+                  onSubmit={this.handleSubmit}
+                >
+                  <h3>Sign Up</h3>
+                  <Form.Row>
+                    <Form.Group as={Col} md='6' controlId='validationCustom01'>
+                      <Form.Label>First name</Form.Label>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='First name'
+                        value={this.state.firstName}
+                        onChange={this.onChange}
+                        name='firstName'
+                      />
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md='6' controlId='validationCustom02'>
+                      <Form.Label>Last name</Form.Label>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='Last name'
+                        value={this.state.lastName}
+                        onChange={this.onChange}
+                        name='lastName'
+                      />
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                  </Form.Row>
+                  <Form.Group controlId='formGroupEmail'>
+                    <Form.Label>Email address</Form.Label>
+
+                    <Form.Control
+                      required
+                      type='email'
+                      placeholder='Enter email'
+                      className='form-control'
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      name='email'
+                    />
+                  </Form.Group>
+                  <Form.Group controlId='formGroupEmail'>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      required
+                      type='password'
+                      placeholder='Enter password'
+                      className='form-control'
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      name='password'
+                    />
+                  </Form.Group>
+                  <Button type='submit' variant='outline-primary' block>
+                    Sign Up
+                  </Button>{' '}
+                  <Link className='forgot-password text-right' to='/'>
+                    {' '}
+                    Forgot Password?
+                  </Link>
+                </Form>
+              </Styles>
+            </div>
+          </div>
+        </AuthWrapper>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = {
+  userSignUpRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 const Styles = styled.div`
   .auth-inner {
@@ -39,124 +157,3 @@ const Styles = styled.div`
     }
   }
 `;
-
-class SignUp extends Component {
-  state = {
-    isValidated: false,
-  };
-
-  handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    this.setState({ isValidated: true });
-  };
-  render() {
-    return (
-      <div>
-        <AuthWrapper>
-          <div className='auth-wrapper'>
-            <div className='signUp-inner'>
-              <Styles>
-                <Form
-                  noValidate
-                  validated={this.state.isValidated}
-                  onSubmit={this.handleSubmit}
-                >
-                  <h3>Sign Up</h3>
-                  <Form.Row>
-                    <Form.Group as={Col} md='6' controlId='validationCustom01'>
-                      <Form.Label>First name</Form.Label>
-                      <Form.Control
-                        required
-                        type='text'
-                        placeholder='First name'
-                      />
-                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md='6' controlId='validationCustom02'>
-                      <Form.Label>Last name</Form.Label>
-                      <Form.Control
-                        required
-                        type='text'
-                        placeholder='Last name'
-                      />
-                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Group controlId='formGroupEmail'>
-                    <Form.Label>Email address</Form.Label>
-
-                    <Form.Control
-                      required
-                      type='email'
-                      placeholder='Enter email'
-                      className='form-control'
-                    />
-                  </Form.Group>
-                  <Form.Group controlId='formGroupEmail'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      required
-                      type='password'
-                      placeholder='Enter password'
-                      className='form-control'
-                    />
-                  </Form.Group>
-                  <Form.Group controlId='formGridAddress1'>
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder='1234 Main St' />
-                  </Form.Group>
-                  <Form.Group controlId='formGridAddress2'>
-                    <Form.Label>Address 2</Form.Label>
-                    <Form.Control placeholder='Apartment, studio, or floor' />
-                  </Form.Group>
-                  <Form.Group controlId='formGridCity'>
-                    <Form.Label>City</Form.Label>
-                    <Form.Control as='select' value='Choose...'>
-                      <option>Choose...</option>
-                      <option>...</option>
-                    </Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId='formGridState'>
-                    <Form.Label>State</Form.Label>
-                    <Form.Control as='select' value='Choose...'>
-                      <option>Choose...</option>
-                      <option>...</option>
-                    </Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId='formGridZip'>
-                    <Form.Label>Zip</Form.Label>
-                    <Form.Control />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Check
-                      name='terms'
-                      label='Remeber me'
-                      id='validationFormik0'
-                    />
-                  </Form.Group>
-                  <Button type='submit' variant='outline-primary' block>
-                    Sign Up
-                  </Button>{' '}
-                  <Link className='forgot-password text-right' to='/'>
-                    {' '}
-                    Forgot Password?
-                  </Link>
-                </Form>
-              </Styles>
-            </div>
-          </div>
-        </AuthWrapper>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

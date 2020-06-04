@@ -34,7 +34,7 @@ const Styles = styled.div`
 const DetailsSection = () => {
   const [setRotate, setRotateState] = useState('arrowIcon');
 
-  function handleClick(e) {
+  function handleClick(e, c) {
     setRotateState(
       setRotate === 'arrowIcon' ? 'arrowIcon rotate' : 'arrowIcon'
     );
@@ -45,9 +45,13 @@ const DetailsSection = () => {
         <div>
           <h2 className='h2'>Vitara Brezza VDI (O) Specifications</h2>
         </div>
-        <Accordion onClick={handleClick} className='mt-3'>
+        <Accordion className='mt-3'>
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey='0'>
+            <Accordion.Toggle
+              onClick={handleClick}
+              as={Card.Header}
+              eventKey='0'
+            >
               <Row>
                 <Col>Engine & Transmission</Col>
                 <Col>
@@ -87,19 +91,23 @@ const DetailsSection = () => {
           <div>
             <h2 className='h2'>Vitara Brezza VDI (O) Features</h2>
           </div>
-          <Accordion onClick={handleClick} className='mt-3'>
+          <Accordion className='mt-3'>
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey='0'>
+              <Accordion.Toggle
+                onClick={handleClick}
+                as={Card.Header}
+                eventKey='1'
+              >
                 <Row>
                   <Col>Engine & Transmission</Col>
                   <Col>
-                    <Icon className='arrowIcon'>
+                    <Icon className={`${setRotate}`}>
                       <BsChevronDown />
                     </Icon>
                   </Col>
                 </Row>
               </Accordion.Toggle>
-              <Accordion.Collapse eventKey='0'>
+              <Accordion.Collapse eventKey='1'>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -111,7 +119,7 @@ const DetailsSection = () => {
                   </Row>
                 </Card.Body>
               </Accordion.Collapse>
-              <Accordion.Collapse eventKey='0'>
+              <Accordion.Collapse eventKey='1'>
                 <Card.Body>
                   <Row>
                     <Col>
