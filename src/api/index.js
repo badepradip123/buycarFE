@@ -3,7 +3,8 @@ import axios from 'axios';
 //import AccountContainer from '../components/Account/AccountContainer';
 import { withRouter } from 'react-router-dom';
 
-const api = 'https://buycar-api.herokuapp.com';
+// const api = 'https://buycar-api.herokuapp.com';
+const api = process.env.REACT_APP_BASE_API_URL;
 const axiosInstance = axios.create({
   baseURL: api,
 });

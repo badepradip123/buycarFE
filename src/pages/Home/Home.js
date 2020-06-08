@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/Home/Header';
 import Slider from '../../components/globals/Slider';
 import firstImg from '../../assets/Images/brezza.jpg';
 import secondImg from '../../assets/Images/1.jpg';
 import thirdImg from '../../assets/Images/2.jpg';
 import FilterSection from '../../components/Home/FilterSection';
 import Slider2 from '../../components/globals/Slider2';
-import Footer from '../../components/globals/Footer';
 
 const projects = [
   {

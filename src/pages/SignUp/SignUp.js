@@ -16,6 +16,7 @@ class SignUp extends Component {
       lastName: '',
       email: '',
       password: '',
+      mobile: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -87,7 +88,7 @@ class SignUp extends Component {
                       name='email'
                     />
                   </Form.Group>
-                  <Form.Group controlId='formGroupEmail'>
+                  <Form.Group controlId='formGroupPassword'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
@@ -97,6 +98,18 @@ class SignUp extends Component {
                       value={this.state.password}
                       onChange={this.onChange}
                       name='password'
+                    />
+                  </Form.Group>
+                  <Form.Group controlId='formGroupMobile'>
+                    <Form.Label>Mobile</Form.Label>
+                    <Form.Control
+                      required
+                      type='text'
+                      placeholder='Mobile'
+                      className='form-control'
+                      value={this.state.mobile}
+                      onChange={this.onChange}
+                      name='mobile'
                     />
                   </Form.Group>
                   <Button type='submit' variant='outline-primary' block>

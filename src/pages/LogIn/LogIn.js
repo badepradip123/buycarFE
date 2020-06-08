@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { userLoginRequest } from '../../store/actions';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AuthWrapper } from '../../components/Auth/AuthWrapper';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner, Alert } from 'react-bootstrap';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isValidated: false,
-      email: '',
+      username: '',
       password: '',
     };
 
@@ -22,7 +25,6 @@ class Login extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -31,8 +33,7 @@ class Login extends Component {
     if (form.checkValidity() === false) {
     }
 
-    this.setState({ isValidated: true });
-    this.props.userLoginRequest(this.state);
+    this.props.userLoginRequest(this.state, this.props.history);
   }
   render() {
     return (
@@ -48,19 +49,33 @@ class Login extends Component {
                 >
                   <h3>Sign In</h3>
                   <Form.Group controlId='formGroupEmail'>
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>username</Form.Label>
 
                     <Form.Control
                       required
-                      type='email'
-                      placeholder='Enter email'
+                      type='text'
+                      placeholder='+91'
                       className='form-control'
-                      value={this.state.email}
+                      value={this.state.username}
                       onChange={this.onChange}
-                      name='email'
+                      name='username'
+                      isInvalid={
+                        this.props.error &&
+                        ((this.props.error.username &&
+                          this.props.error.username[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))
+                      }
                     />
+                    <Form.Control.Feedback type='invalid'>
+                      {this.props.error &&
+                        ((this.props.error.username &&
+                          this.props.error.username[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))}
+                    </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Group controlId='formGroupEmail'>
+                  <Form.Group controlId='formGroupPassword'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
@@ -70,7 +85,21 @@ class Login extends Component {
                       onChange={this.onChange}
                       value={this.state.password}
                       name='password'
+                      isInvalid={
+                        this.props.error &&
+                        ((this.props.error.password &&
+                          this.props.error.password[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))
+                      }
                     />
+                    <Form.Control.Feedback type='invalid'>
+                      {this.props.error &&
+                        ((this.props.error.password &&
+                          this.props.error.password[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group>
                     <Form.Check
@@ -80,7 +109,17 @@ class Login extends Component {
                     />
                   </Form.Group>
                   <Button type='submit' variant='outline-primary' block>
-                    Log In
+                    {this.props.loading ? (
+                      <Spinner
+                        as='span'
+                        animation='border'
+                        size='sm'
+                        role='status'
+                        aria-hidden='true'
+                      />
+                    ) : (
+                      'Log In'
+                    )}
                   </Button>{' '}
                   <Link className='forgot-password text-right' to='/'>
                     {' '}
@@ -88,7 +127,7 @@ class Login extends Component {
                   </Link>
                   <Link className='register-here text-right' to='/signup'>
                     {' '}
-                    New to CarDekho ?REGISTER here
+                    New to BuyCar ?REGISTER here
                   </Link>
                 </Form>
               </Styles>
@@ -100,17 +139,32 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {
-  // userLoginRequest,
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapDispatchToProps = {
+  userLoginRequest,
+};
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Login);
 
 const Styles = styled.div`
   label {
     font-weight: 500;
+  }
+
+  .invalid-feedback {
+    height: 1em !important;
+    display: block;
   }
 
   .forgot-password,

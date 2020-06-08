@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
+import SignUpReducer from './SignUpReducer';
+import AuthReducer from './AuthReducer';
+import FlashReducer from './FlashReducer';
 
 export default combineReducers({
-  value: () => '123',
+  signup: SignUpReducer,
+  auth: AuthReducer,
+  flash: FlashReducer,
 });

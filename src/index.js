@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
 import reducers from './store/reducers';
+import { BrowserRouter } from 'react-router-dom';
 
 //create store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,7 +18,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

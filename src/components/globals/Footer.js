@@ -69,13 +69,13 @@ const Footer = () => {
               <h4>Overview</h4>
               <ul className='list-unstyled'>
                 <li>
-                  <Link>Trustmarked used cars</Link>
+                  <Link to='/'>Trustmarked used cars</Link>
                 </li>
                 <li>
-                  <Link>Advertise with Us</Link>
+                  <Link to='/'>Advertise with Us</Link>
                 </li>
                 <li>
-                  <Link>Customer Care</Link>
+                  <Link to='/'>Customer Care</Link>
                 </li>
               </ul>
             </Col>
@@ -83,13 +83,13 @@ const Footer = () => {
               <h4>Services</h4>
               <ul className='list-unstyled'>
                 <li>
-                  <Link>Buy Car</Link>
+                  <Link to='/'>Buy Car</Link>
                 </li>
                 <li>
-                  <Link>Book Test Drive</Link>
+                  <Link to='/'>Book Test Drive</Link>
                 </li>
                 <li>
-                  <Link>New Car</Link>
+                  <Link to='/'>New Car</Link>
                 </li>
               </ul>
             </Col>
@@ -97,22 +97,18 @@ const Footer = () => {
             <Col md={3} sm={6}>
               <h4>Follow Us</h4>
               <p>Let us be social</p>
-              <div class='row'>
+              <div className='row'>
                 <Icon className='footer-icon mt-3'>
-                  <Link href='#'>
-                    {' '}
+                  <Link to='/login'>
                     <FaFacebook />
                   </Link>
-                  <Link href='#'>
-                    {' '}
+                  <Link to='/login'>
                     <FaInstagram />
                   </Link>
-                  <Link href='#'>
-                    {' '}
+                  <Link to='/login'>
                     <FaTwitter />
                   </Link>
-                  <Link href='#'>
-                    {' '}
+                  <Link to='/login'>
                     <FaYoutube />
                   </Link>
                 </Icon>
