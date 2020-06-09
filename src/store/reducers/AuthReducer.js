@@ -3,6 +3,7 @@ import {
   AUTH_SUCCESS,
   AUTH_FAIL,
   ADD_FLASH_MESSAGE,
+  AUTH_LOGOUT,
 } from '../Types';
 
 const INITIAL_STATE = {
@@ -42,6 +43,10 @@ const addFlashMessage = (state, action) => {
   };
 };
 
+const authLogout = (state, action) => {
+  return { ...state, token: null, user: null };
+};
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AUTH_START:
@@ -53,6 +58,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case ADD_FLASH_MESSAGE:
       return addFlashMessage(state, action);
+
+    case AUTH_LOGOUT:
+      return authLogout(state, action);
 
     default:
       return state;

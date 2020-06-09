@@ -7,15 +7,16 @@ import {
   Image,
   Tooltip,
   OverlayTrigger,
+  Popover,
 } from 'react-bootstrap';
 import { RiMenu2Line } from 'react-icons/ri';
 import logo from '../../assets/Images/logo.png';
-import { PrimaryBtnOutline } from '../globals/Button';
+import { PrimaryBtnOutline, BtnOutline } from '../globals/Button';
 import styled from 'styled-components';
 import { setColor, setShadow } from '../../styles';
 import { Link } from 'react-router-dom';
 import Icon from '../globals/Icon';
-import { FaUser } from 'react-icons/fa';
+import { FaRegUserCircle, FaUserCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
 
 class Header extends React.Component {
@@ -52,14 +53,35 @@ class Header extends React.Component {
             <Form inline>
               {this.props.isAuthenticated ? (
                 <OverlayTrigger
-                  placement='bottom'
-                  overlay={<Tooltip id='button-tooltip'>User</Tooltip>}
+                  trigger='click'
+                  placement={'bottom'}
+                  overlay={
+                    <Popover
+                      style={{ textAlign: 'center' }}
+                      id={`popover-positioned-bottom`}
+                    >
+                      <Popover.Title as='h2'>{`Pradip Bade`}</Popover.Title>
+                      <Popover.Content>
+                        <BtnOutline>
+                          <Button
+                            onClick={() => {
+                              this.props.logout();
+                            }}
+                            variant='outline-primary'
+                            block
+                          >
+                            Logout
+                          </Button>
+                        </BtnOutline>
+                      </Popover.Content>
+                    </Popover>
+                  }
                 >
-                  <div>
-                    <Icon className='mr-3 user' size={'2em'}>
-                      <FaUser />
+                  <span className='d-inline-block mr-5'>
+                    <Icon className='user' size={'2em'}>
+                      <FaUserCircle />
                     </Icon>
-                  </div>
+                  </span>
                 </OverlayTrigger>
               ) : (
                 <PrimaryBtnOutline>
@@ -111,6 +133,10 @@ const Styles = styled.div`
   .navbar-nav .nav-link {
     margin-left: 2rem;
     font-size: 16px;
+  }
+
+  .popover-header {
+    text-align: center;
   }
 
   @media only screen and (max-width: 768px) {

@@ -22,12 +22,11 @@ export const authFail = (error) => {
   };
 };
 
-export const logout = () => {
+export const logout = (history) => async (dispatch) => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
-  return {
-    type: AUTH_LOGOUT,
-  };
+  history.push('/login');
+  dispatch({ type: AUTH_LOGOUT });
 };
 
 export const userLoginRequest = (userData, history) => async (dispatch) => {
@@ -35,7 +34,7 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
     type: AUTH_START,
   });
   let body = {
-    username: userData.username,
+    username: userData.username ? '+91' + userData.username : '',
     password: userData.password,
   };
 
@@ -63,9 +62,7 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
 export const authCheckState = () => {
   return (dispatch) => {
     const token = localStorage.getItem('token');
-    if (!token) {
-      dispatch(logout());
-    } else {
+    if (token) {
       const user = localStorage.getItem('user');
       dispatch(authSuccess(token, user));
     }

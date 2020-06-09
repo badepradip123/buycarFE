@@ -4,7 +4,7 @@ import { userLoginRequest } from '../../store/actions';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AuthWrapper } from '../../components/Auth/AuthWrapper';
-import { Button, Form, Spinner, Alert } from 'react-bootstrap';
+import { Button, Form, Spinner, Alert, InputGroup } from 'react-bootstrap';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
@@ -32,7 +32,6 @@ class Login extends Component {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
     }
-
     this.props.userLoginRequest(this.state, this.props.history);
   }
   render() {
@@ -50,23 +49,28 @@ class Login extends Component {
                   <h3>Sign In</h3>
                   <Form.Group controlId='formGroupEmail'>
                     <Form.Label>username</Form.Label>
-
-                    <Form.Control
-                      required
-                      type='text'
-                      placeholder='+91'
-                      className='form-control'
-                      value={this.state.username}
-                      onChange={this.onChange}
-                      name='username'
-                      isInvalid={
-                        this.props.error &&
-                        ((this.props.error.username &&
-                          this.props.error.username[0]) ||
-                          (this.props.error.non_field_errors &&
-                            this.props.error.non_field_errors[0]))
-                      }
-                    />
+                    <InputGroup className='mb-2'>
+                      <InputGroup.Prepend>
+                        <InputGroup.Text>+91</InputGroup.Text>
+                      </InputGroup.Prepend>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='1234567890'
+                        className='form-control'
+                        value={this.state.username}
+                        onChange={this.onChange}
+                        disabled={this.props.loading}
+                        name='username'
+                        isInvalid={
+                          this.props.error &&
+                          ((this.props.error.username &&
+                            this.props.error.username[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))
+                        }
+                      />
+                    </InputGroup>
                     <Form.Control.Feedback type='invalid'>
                       {this.props.error &&
                         ((this.props.error.username &&
@@ -85,6 +89,7 @@ class Login extends Component {
                       onChange={this.onChange}
                       value={this.state.password}
                       name='password'
+                      disabled={this.props.loading}
                       isInvalid={
                         this.props.error &&
                         ((this.props.error.password &&

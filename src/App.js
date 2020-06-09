@@ -11,18 +11,24 @@ import { ProductList } from './pages/ProductList/ProductList';
 import MainGallery from './components/ProductDetails/ProductGallery/MainGallery/MainGallery';
 import { connect } from 'react-redux';
 import FlashMessagesList from './components/FlashMessages/FlashMessagesList';
-import { authCheckState } from './store/actions';
+import { authCheckState, logout } from './store/actions';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.authCheckState();
   }
+
+  onLogout = () => {
+    this.props.logout(this.props.history);
+  };
   render() {
     return (
       <div>
         <Globals />
 
-        <Header />
+        <Header logout={this.onLogout} />
         <FlashMessagesList />
         <Switch>
           <Route exact path='/' component={Home} />
@@ -48,6 +54,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   authCheckState,
+  logout,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(App);

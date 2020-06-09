@@ -74,7 +74,10 @@ const Slider2 = (props) => {
                 <div className='inner'>
                   <Card.Img src={item.img} />
                 </div>
-                <Card.Title>{item.title}</Card.Title>
+                <div className='card-body'>
+                  <Card.Title>{item.title}</Card.Title>
+                  <h4 className='mt-1'>&#8377; 5.19 - 8.02 Lakh*</h4>
+                </div>
               </Card>
             </Col>
           );
@@ -134,9 +137,21 @@ const Styles = styled.div`
   }
 
   .card-title {
-    text-align: center;
     margin-top: 0.5rem;
     margin-bottom: 0;
+  }
+
+  .card-body{
+    padding: .5em 1em;
+  }
+
+  .price{
+    margin-bottom: 0;
+   
+  }
+
+  h4{
+    margin-bottom: 0.25em;
     color: ${setColor.primaryColor};
   }
 
