@@ -1,6 +1,34 @@
 import axiosInstance from '../../api/index';
-import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL } from '../Types/AuthTypes';
+import {
+  AUTH_START,
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  AUTH_LOGOUT,
+} from '../Types/AuthTypes';
 import { addFlashMessage } from './flashMessage';
+
+export const authSuccess = (token, user) => {
+  return {
+    type: AUTH_SUCCESS,
+    token: token,
+    user: user,
+  };
+};
+
+export const authFail = (error) => {
+  return {
+    type: AUTH_FAIL,
+    error: error,
+  };
+};
+
+export const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  return {
+    type: AUTH_LOGOUT,
+  };
+};
 
 export const userLoginRequest = (userData, history) => async (dispatch) => {
   dispatch({
@@ -23,18 +51,23 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
         })
       );
 
-      dispatch({
-        type: AUTH_SUCCESS,
-        token: res.data.token,
-        user: res.data.user,
-      });
+      dispatch(authSuccess(res.data.token, res.data.user));
       history.push('/');
     })
     .catch((err) => {
-      console.log('error', err.response.data);
-      dispatch({
-        type: AUTH_FAIL,
-        error: err.response.data,
-      });
+      // console.log('error', err.response.data);
+      dispatch(authFail(err.response.data));
     });
+};
+
+export const authCheckState = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const user = localStorage.getItem('user');
+      dispatch(authSuccess(token, user));
+    }
+  };
 };

@@ -6,67 +6,6 @@ import styled from 'styled-components';
 import Icon from './Icon';
 import { setColor, setTransition } from '../../styles';
 
-const Styles = styled.div`
-  .arrowStyle {
-    position: absolute;
-    top: 35%;
-    z-index: 1;
-  }
-
-  .right-0 {
-    right: 0;
-  }
-
-  .left-0 {
-    left: 0;
-  }
-
-  .card {
-    transition: box-shadow 0.3s;
-    cursor: pointer;
-    overflow: hidden;
-    margin: 0 auto;
-    width: 80%;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-  }
-
-  .card:hover {
-    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
-  }
-
-  .card-img {
-    height: 8rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .inner {
-    overflow: hidden;
-  }
-
-  .inner img {
-    transition: all 1.5s ease;
-    /* ${setTransition('all', '1.5s', 'ease')} */
-  }
-
-  .inner:hover img {
-    transform: scale(1.5);
-  }
-
-  .card-title {
-    text-align: center;
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-    color: ${setColor.primaryColor};
-  }
-
-  .col {
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 2rem;
-  }
-`;
-
 function NextArrow(props) {
   const { onClick } = props;
   return (
@@ -146,3 +85,64 @@ const Slider2 = (props) => {
 };
 
 export default Slider2;
+
+const Styles = styled.div`
+  .arrowStyle {
+    position: absolute;
+    top: 35%;
+    z-index: 1;
+  }
+
+  .right-0 {
+    right: 0;
+  }
+
+  .left-0 {
+    left: 0;
+  }
+
+  .card {
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .card:hover {
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+  }
+
+  .card-img {
+    height: 8rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .inner {
+    overflow: hidden;
+  }
+
+  .inner img {
+    transition: all 1.5s ease;
+    /* ${setTransition('all', '1.5s', 'ease')} */
+  }
+
+  .inner:hover img {
+    transform: scale(1.5);
+  }
+
+  .card-title {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    color: ${setColor.primaryColor};
+  }
+
+  .col {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+`;

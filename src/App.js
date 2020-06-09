@@ -11,8 +11,12 @@ import { ProductList } from './pages/ProductList/ProductList';
 import MainGallery from './components/ProductDetails/ProductGallery/MainGallery/MainGallery';
 import { connect } from 'react-redux';
 import FlashMessagesList from './components/FlashMessages/FlashMessagesList';
+import { authCheckState } from './store/actions';
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.authCheckState();
+  }
   render() {
     return (
       <div>
@@ -42,6 +46,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  authCheckState,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
