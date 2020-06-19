@@ -41,19 +41,27 @@ class ProductGallery extends React.Component {
               {this.props.data.slice(0, 5).map((item, index) => {
                 if (index === 0 || index === 1 || index === 2) {
                   return (
-                    <Col md={4}>
+                    <Col
+                      onClick={() => window.open('/gallery', '_self')}
+                      md={4}
+                    >
                       <Image width={200} height={220} src={item.img} />
                     </Col>
                   );
                 } else if (index === 3) {
                   return (
-                    <Col className='mt-2' md={8}>
+                    <Col
+                      onClick={() => window.open('/gallery', '_self')}
+                      className='mt-2'
+                      md={8}
+                    >
                       <Image width={'100%'} height={220} src={item.img} />
                     </Col>
                   );
                 } else {
                   return (
                     <Col
+                      onClick={() => window.open('/gallery', '_self')}
                       style={{ opacity: 0.5, position: 'relative' }}
                       className='mt-2'
                       md={4}

@@ -14,6 +14,7 @@ import FlashMessagesList from './components/FlashMessages/FlashMessagesList';
 import { authCheckState, logout } from './store/actions';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
+import { Address } from './pages/Address/Address';
 
 class App extends React.Component {
   componentDidMount() {
@@ -35,6 +36,7 @@ class App extends React.Component {
           <Route path='/details' component={ProductDetails} />
           <Route path='/list' component={ProductList} />
           <Route path='/gallery' component={MainGallery} />
+          <Route path='/address' component={Address} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
           <Redirect to='/' />

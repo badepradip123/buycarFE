@@ -35,6 +35,7 @@ const DetailsSection = () => {
   const [setRotate, setRotateState] = useState('arrowIcon');
 
   function handleClick(e, c) {
+    console.log('click', e, c);
     setRotateState(
       setRotate === 'arrowIcon' ? 'arrowIcon rotate' : 'arrowIcon'
     );
@@ -45,7 +46,7 @@ const DetailsSection = () => {
         <div>
           <h2 className='h2'>Vitara Brezza VDI (O) Specifications</h2>
         </div>
-        <Accordion className='mt-3'>
+        <Accordion id='1' className='mt-3'>
           <Card>
             <Accordion.Toggle
               onClick={handleClick}
