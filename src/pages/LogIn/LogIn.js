@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { userLoginRequest } from '../../store/actions';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AuthWrapper } from '../../components/Auth/AuthWrapper';
-import { Button, Form, Spinner, Alert, InputGroup } from 'react-bootstrap';
+import { Button, Form, Spinner, InputGroup } from 'react-bootstrap';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
@@ -145,7 +144,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     loading: state.auth.loading,
     error: state.auth.error,

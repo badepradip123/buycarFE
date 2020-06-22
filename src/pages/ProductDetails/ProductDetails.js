@@ -10,6 +10,7 @@ import firstImg from '../../assets/Images/brezza.jpg';
 import secondImg from '../../assets/Images/1.jpg';
 import thirdImg from '../../assets/Images/2.jpg';
 import MainGallery from '../../components/ProductDetails/ProductGallery/MainGallery/MainGallery';
+import Schedule from '../../components/ProductDetails/Schedule/Schedule';
 
 const projects = [
   {
@@ -97,6 +98,7 @@ export class ProductDetails extends Component {
   render() {
     return (
       <Styles>
+        <Schedule />
         <DetailsHead />
         <DetailsSection />
         <ProductGallery data={projects} />

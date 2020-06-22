@@ -5,6 +5,7 @@ const Globals = createGlobalStyle`
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+
 *{
  margin:0;
  padding:0;

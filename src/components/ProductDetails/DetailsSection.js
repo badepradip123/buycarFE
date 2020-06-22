@@ -35,7 +35,7 @@ const DetailsSection = () => {
   const [setRotate, setRotateState] = useState('arrowIcon');
 
   function handleClick(e, c) {
-    console.log('click', e, c);
+    // console.log('click', e, c);
     setRotateState(
       setRotate === 'arrowIcon' ? 'arrowIcon rotate' : 'arrowIcon'
     );
