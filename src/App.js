@@ -15,6 +15,7 @@ import { authCheckState, logout } from './store/actions';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { Address } from './pages/Address/Address';
+import { Payment } from './pages/Payment/Payment';
 
 class App extends React.Component {
   componentDidMount() {
@@ -39,6 +40,7 @@ class App extends React.Component {
           <Route path='/address' component={Address} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
+          <Route path='/checkout' component={Payment} />
           <Redirect to='/' />
         </Switch>
 

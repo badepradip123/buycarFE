@@ -8,6 +8,7 @@ import { onSchedule } from '../../../store/actions';
 import styled from 'styled-components';
 import Icon from '../../globals/Icon';
 import { setColor } from '../../../styles';
+import { Link } from 'react-router-dom';
 
 const dropdownTime = [
   '10 am',
@@ -92,7 +93,12 @@ class Schedule extends Component {
               <Button variant='secondary' onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant='primary' onClick={this.onSubmit}>
+              <Button
+                as={Link}
+                to='/address'
+                variant='primary'
+                onClick={this.onSubmit}
+              >
                 Save Changes
               </Button>
             </Modal.Footer>

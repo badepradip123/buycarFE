@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Card, Button, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { setColor } from '../../styles';
+import { Link } from 'react-router-dom';
 
 export class AddressCard extends Component {
   render() {
@@ -22,7 +23,12 @@ export class AddressCard extends Component {
                         make up the bulk of the card's content.
                       </Card.Text>
 
-                      <Button block variant='outline-primary'>
+                      <Button
+                        as={Link}
+                        to='/checkout'
+                        block
+                        variant='outline-primary'
+                      >
                         Delivery Here
                       </Button>
                     </Card.Body>

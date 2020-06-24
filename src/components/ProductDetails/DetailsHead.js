@@ -133,7 +133,7 @@ class DetailsHead extends Component {
               </Col>
               <Col sm>
                 <BtnOutline>
-                  <Button as={Link} to='/login' variant='primary' block>
+                  <Button as={Link} to='/address' variant='primary' block>
                     Buy Now
                   </Button>
                 </BtnOutline>
