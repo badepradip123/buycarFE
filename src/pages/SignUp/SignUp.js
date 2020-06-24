@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { AuthWrapper } from '../../components/Auth/AuthWrapper';
-import { Button, Form, Col } from 'react-bootstrap';
+import { Button, Form, Col, InputGroup } from 'react-bootstrap';
 import { setColor } from '../../styles';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { userSignUpRequest } from '../../store/actions/';
+import { compose } from 'redux';
 
 class SignUp extends Component {
   constructor(props) {
@@ -33,8 +34,7 @@ class SignUp extends Component {
     if (form.checkValidity() === false) {
     }
 
-    this.setState({ isValidated: true });
-    this.props.userSignUpRequest(this.state);
+    this.props.userSignUpRequest(this.state, this.props.history);
   }
   render() {
     return (
@@ -58,9 +58,23 @@ class SignUp extends Component {
                         placeholder='First name'
                         value={this.state.firstName}
                         onChange={this.onChange}
+                        disabled={this.props.loading}
                         name='firstName'
+                        isInvalid={
+                          this.props.error &&
+                          ((this.props.error.first_name &&
+                            this.props.error.first_name[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))
+                        }
                       />
-                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      <Form.Control.Feedback type='invalid'>
+                        {this.props.error &&
+                          ((this.props.error.first_name &&
+                            this.props.error.first_name[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md='6' controlId='validationCustom02'>
                       <Form.Label>Last name</Form.Label>
@@ -70,9 +84,23 @@ class SignUp extends Component {
                         placeholder='Last name'
                         value={this.state.lastName}
                         onChange={this.onChange}
+                        disabled={this.props.loading}
                         name='lastName'
+                        isInvalid={
+                          this.props.error &&
+                          ((this.props.error.last_name &&
+                            this.props.error.last_name[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))
+                        }
                       />
-                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      <Form.Control.Feedback type='invalid'>
+                        {this.props.error &&
+                          ((this.props.error.last_name &&
+                            this.props.error.last_name[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Form.Row>
                   <Form.Group controlId='formGroupEmail'>
@@ -85,8 +113,22 @@ class SignUp extends Component {
                       className='form-control'
                       value={this.state.email}
                       onChange={this.onChange}
+                      isInvalid={
+                        this.props.error &&
+                        ((this.props.error.email &&
+                          this.props.error.email[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))
+                      }
                       name='email'
                     />
+                    <Form.Control.Feedback type='invalid'>
+                      {this.props.error &&
+                        ((this.props.error.email &&
+                          this.props.error.email[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId='formGroupPassword'>
                     <Form.Label>Password</Form.Label>
@@ -98,19 +140,52 @@ class SignUp extends Component {
                       value={this.state.password}
                       onChange={this.onChange}
                       name='password'
+                      isInvalid={
+                        this.props.error &&
+                        ((this.props.error.password &&
+                          this.props.error.password[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))
+                      }
                     />
+                    <Form.Control.Feedback type='invalid'>
+                      {this.props.error &&
+                        ((this.props.error.password &&
+                          this.props.error.password[0]) ||
+                          (this.props.error.non_field_errors &&
+                            this.props.error.non_field_errors[0]))}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId='formGroupMobile'>
                     <Form.Label>Mobile</Form.Label>
-                    <Form.Control
-                      required
-                      type='text'
-                      placeholder='Mobile'
-                      className='form-control'
-                      value={this.state.mobile}
-                      onChange={this.onChange}
-                      name='mobile'
-                    />
+                    <InputGroup className='mb-2'>
+                      <InputGroup.Prepend>
+                        <InputGroup.Text>+91</InputGroup.Text>
+                      </InputGroup.Prepend>
+                      <Form.Control
+                        required
+                        type='text'
+                        placeholder='Mobile'
+                        className='form-control'
+                        value={this.state.mobile}
+                        onChange={this.onChange}
+                        name='mobile'
+                        isInvalid={
+                          this.props.error &&
+                          ((this.props.error.mobile &&
+                            this.props.error.mobile[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))
+                        }
+                      />
+                      <Form.Control.Feedback type='invalid'>
+                        {this.props.error &&
+                          ((this.props.error.mobile &&
+                            this.props.error.mobile[0]) ||
+                            (this.props.error.non_field_errors &&
+                              this.props.error.non_field_errors[0]))}
+                      </Form.Control.Feedback>
+                    </InputGroup>
                   </Form.Group>
                   <Button type='submit' variant='outline-primary' block>
                     Sign Up
@@ -129,14 +204,23 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  // console.log('error', state.signup.error);
+  return {
+    loading: state.signup.loading,
+    error: state.signup.error,
+    isAuthenticated: state.auth.token !== null,
+  };
+};
 
 const mapDispatchToProps = {
   userSignUpRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
-
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(SignUp);
 const Styles = styled.div`
   .auth-inner {
     width: 650px !important;

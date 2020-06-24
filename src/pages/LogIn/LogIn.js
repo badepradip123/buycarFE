@@ -144,6 +144,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
+  // console.log(state.auth.user);
   return {
     loading: state.auth.loading,
     error: state.auth.error,

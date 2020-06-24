@@ -11,7 +11,7 @@ export const authSuccess = (token, user) => {
   return {
     type: AUTH_SUCCESS,
     token: token,
-    user: user,
+    user: JSON.stringify(user),
   };
 };
 
@@ -42,14 +42,14 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
     .post('/auth/login', body)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', res.data.user);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
       dispatch(
         addFlashMessage({
           type: 'success',
           text: 'You signed up successfully. Welcome!',
         })
       );
-
+      // console.log('response auth', res.data);
       dispatch(authSuccess(res.data.token, res.data.user));
       history.push('/');
     })
