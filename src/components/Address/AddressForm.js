@@ -53,6 +53,7 @@ class AddressForm extends Component {
                 onChange={this.onChange}
                 placeholder='1234 Main St'
                 value={this.state.street}
+                disabled={this.props.loading}
               />
             </Form.Group>
 
@@ -63,6 +64,7 @@ class AddressForm extends Component {
                 onChange={this.onChange}
                 placeholder='Apartment, studio, or floor'
                 value={this.state.apartment}
+                disabled={this.props.loading}
               />
             </Form.Group>
 
@@ -81,6 +83,7 @@ class AddressForm extends Component {
                     (this.props.error.non_field_errors &&
                       this.props.error.non_field_errors[0]))
                 }
+                disabled={this.props.loading}
               >
                 <option>Choose...</option>
                 <option>Pune</option>
@@ -102,6 +105,7 @@ class AddressForm extends Component {
                 as='select'
                 defaultValue='Choose...'
                 value={this.state.state}
+                disabled={this.props.loading}
               >
                 <option>Choose...</option>
                 <option>Maharashtra</option>
@@ -123,6 +127,7 @@ class AddressForm extends Component {
                     (this.props.error.non_field_errors &&
                       this.props.error.non_field_errors[0]))
                 }
+                disabled={this.props.loading}
               />
               <Form.Control.Feedback type='invalid'>
                 {this.props.error &&
@@ -133,7 +138,7 @@ class AddressForm extends Component {
             </Form.Group>
 
             <Button size='lg' variant='outline-primary' type='submit'>
-              Submit
+              Add address
             </Button>
           </Form>
         </Container>
@@ -147,6 +152,7 @@ const mapStateToProps = (state) => {
     loading: state.address.loading,
     error: state.address.error,
     isAuthenticated: state.auth.token !== null,
+    userAddress: state.address.userAddress,
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddressCard } from '../../components/Address/AddressCard';
+import AddressCard from '../../components/Address/AddressCard';
 import AddressForm from '../../components/Address/AddressForm';
 
 export class Address extends Component {

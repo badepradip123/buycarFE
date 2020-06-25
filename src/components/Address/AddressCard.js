@@ -4,48 +4,94 @@ import { Container, Row, Card, Button, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { setColor } from '../../styles';
 import { Link } from 'react-router-dom';
+import { fetchAddressRequest, deleteAddressRequest } from '../../store/actions';
+import Loader from '../globals/Loader';
 
-export class AddressCard extends Component {
+class AddressCard extends Component {
+  componentDidMount() {
+    this.props.fetchAddressRequest();
+  }
+
+  componentDidUpdate() {
+    if (this.props.delSuccess) {
+      this.props.fetchAddressRequest();
+    }
+  }
+
+  onDelete = (addrees_id) => {
+    console.log('id', addrees_id);
+    this.props.deleteAddressRequest(addrees_id);
+  };
+
   render() {
     return (
       <Styles>
         <Container className='mt-5'>
-          <h3>Select a Delivery Address</h3>
-          <Row>
-            {[1, 2, 3, 4, 5, 6].map((item, index) => {
-              return (
-                <Col className='mt-3' md={4}>
-                  <Card>
-                    <Card.Body>
-                      <Card.Title>Pradip Bade</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text>
+          {this.props.loading ? (
+            <Loader />
+          ) : (
+            <div>
+              <h3>
+                {this.props.userAddress && this.props.userAddress.length > 0
+                  ? 'Select a Delivery Address'
+                  : ''}
+              </h3>
+              <Row>
+                {this.props.userAddress.map((item, index) => {
+                  return (
+                    <Col className='mt-3' md={4}>
+                      <Card>
+                        <Card.Body>
+                          <Card.Title>Pradip Bade</Card.Title>
+                          <Card.Text>
+                            {item.street} {item.apartment}
+                            {item.street || item.apartment ? <br /> : ''}
+                            {item.city} {item.state} {item.pincode}
+                            {item.street || item.apartment ? '' : <br />}
+                            <br />
+                          </Card.Text>
 
-                      <Button
-                        as={Link}
-                        to='/checkout'
-                        block
-                        variant='outline-primary'
-                      >
-                        Delivery Here
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+                          <Button
+                            as={Link}
+                            to='/checkout'
+                            block
+                            variant='outline-primary'
+                          >
+                            Delivery Here
+                          </Button>
+                          <Button
+                            onClick={() => this.onDelete(item.id)}
+                            block
+                            variant='danger'
+                          >
+                            Delete
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </div>
+          )}
         </Container>
       </Styles>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  // console.log('addres card', state.address);
+  return {
+    loading: state.address.loading,
+    error: state.address.error,
+    isAuthenticated: state.auth.token !== null,
+    userAddress: state.address.userAddress,
+    delSuccess: state.address.delSuccess,
+  };
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { fetchAddressRequest, deleteAddressRequest };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressCard);
 

@@ -1,11 +1,85 @@
-import { ADD_USER_ADDRESS } from '../Types';
 import { addFlashMessage } from './flashMessage';
 import axiosInstance from '../../api/index';
 import {
+  ADD_USER_ADDRESS,
   ADD_USER_ADDRESS_SUCCESS,
   ADD_USER_ADDRESS_FAIL,
-} from '../Types/AddressTypes';
+  FETCH_USER_ADDRESS,
+  FETCH_USER_ADDRESS_SUCCESS,
+  FETCH_USER_ADDRESS_FAIL,
+  DELETE_USER_ADDRESS,
+  DELETE_USER_ADDRESS_SUCCESS,
+  DELETE_USER_ADDRESS_FAIL,
+} from '../Types';
 
+/* ---------------------- DELETE ADDRESS ACTION ----------------------------- */
+export const deleteAddressRequest = (address_id) => async (dispatch) => {
+  dispatch({
+    type: DELETE_USER_ADDRESS,
+  });
+
+  axiosInstance
+    .delete(`/auth/address/${address_id}/`)
+    .then((res) => {
+      // console.log('delete response---', res.data);
+
+      dispatch(deleteAddreessSuccess());
+    })
+    .catch((err) => {
+      // console.log('delete error', err.response);
+
+      dispatch(deleteAddreessFail(err.response.data));
+    });
+};
+
+export const deleteAddreessSuccess = () => {
+  return {
+    type: DELETE_USER_ADDRESS_SUCCESS,
+  };
+};
+
+export const deleteAddreessFail = (error) => {
+  return {
+    type: DELETE_USER_ADDRESS_FAIL,
+    error: error,
+  };
+};
+
+/* ---------------------- FETCH ADDRESS ACTION ----------------------------- */
+export const fetchAddressRequest = (history) => async (dispatch) => {
+  dispatch({
+    type: FETCH_USER_ADDRESS,
+  });
+
+  axiosInstance
+    .get('/auth/address/')
+    .then((res) => {
+      console.log('response---', res.data);
+
+      dispatch(fecthAddreessSuccess(res.data));
+    })
+    .catch((err) => {
+      console.log('error', err.response);
+
+      dispatch(fetchAddreessFail(err.response.data));
+    });
+};
+
+export const fecthAddreessSuccess = (userAddress) => {
+  return {
+    type: FETCH_USER_ADDRESS_SUCCESS,
+    userAddress: userAddress,
+  };
+};
+
+export const fetchAddreessFail = (error) => {
+  return {
+    type: FETCH_USER_ADDRESS_FAIL,
+    error: error,
+  };
+};
+
+/* ---------------------- ADD ADDRESS ACTION ----------------------------- */
 export const addAddressRequest = (address, history) => async (dispatch) => {
   let user = JSON.parse(localStorage.getItem('user'));
 
@@ -31,7 +105,7 @@ export const addAddressRequest = (address, history) => async (dispatch) => {
           text: 'You signed up successfully. Welcome!',
         })
       );
-      console.log('response---', res.data);
+      history.go();
       dispatch(addAddreessSuccess(res.data));
     })
     .catch((err) => {

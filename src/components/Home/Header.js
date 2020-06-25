@@ -5,7 +5,6 @@ import {
   Form,
   Button,
   Image,
-  Tooltip,
   OverlayTrigger,
   Popover,
 } from 'react-bootstrap';
@@ -16,7 +15,7 @@ import styled from 'styled-components';
 import { setColor, setShadow } from '../../styles';
 import { Link } from 'react-router-dom';
 import Icon from '../globals/Icon';
-import { FaRegUserCircle, FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
 
 class Header extends React.Component {
@@ -60,7 +59,7 @@ class Header extends React.Component {
                       style={{ textAlign: 'center' }}
                       id={`popover-positioned-bottom`}
                     >
-                      <Popover.Title as='h2'>{`Pradip Bade`}</Popover.Title>
+                      <Popover.Title as='h2'>{`${this.props.user.first_name} ${this.props.user.last_name}`}</Popover.Title>
                       <Popover.Content>
                         <BtnOutline>
                           <Button
@@ -99,8 +98,10 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  // console.log(state.auth.user);
   return {
     isAuthenticated: state.auth.token !== null,
+    user: state.auth.user,
   };
 };
 

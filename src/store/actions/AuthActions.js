@@ -11,7 +11,7 @@ export const authSuccess = (token, user) => {
   return {
     type: AUTH_SUCCESS,
     token: token,
-    user: JSON.stringify(user),
+    user: user,
   };
 };
 
@@ -54,7 +54,7 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
       history.push('/');
     })
     .catch((err) => {
-      // console.log('error', err.response.data);
+      console.log('error', err.response.data);
       dispatch(authFail(err.response.data));
     });
 };
@@ -64,7 +64,7 @@ export const authCheckState = () => {
     const token = localStorage.getItem('token');
     if (token) {
       const user = localStorage.getItem('user');
-      dispatch(authSuccess(token, user));
+      dispatch(authSuccess(token, JSON.parse(user)));
     }
   };
 };
