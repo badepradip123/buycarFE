@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Image, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { setColor } from '../../../styles';
+import Loader from '../../globals/Loader';
 
 const Styles = styled.div`
   .imagesConatiner {
@@ -31,50 +32,55 @@ const Styles = styled.div`
 
 class ProductGallery extends React.Component {
   render() {
+    console.log('list', this.props.list);
     return (
       <Styles>
         <h2 className='h2'>Gallery</h2>
         <Container className='mt-5'>
           <h2>Inetrior Design</h2>
           <div className='imagesConatiner'>
-            <Row>
-              {this.props.data.slice(0, 5).map((item, index) => {
-                if (index === 0 || index === 1 || index === 2) {
-                  return (
-                    <Col
-                      onClick={() => window.open('/gallery', '_self')}
-                      md={4}
-                    >
-                      <Image width={200} height={220} src={item.img} />
-                    </Col>
-                  );
-                } else if (index === 3) {
-                  return (
-                    <Col
-                      onClick={() => window.open('/gallery', '_self')}
-                      className='mt-2'
-                      md={8}
-                    >
-                      <Image width={'100%'} height={220} src={item.img} />
-                    </Col>
-                  );
-                } else {
-                  return (
-                    <Col
-                      onClick={() => window.open('/gallery', '_self')}
-                      style={{ opacity: 0.5, position: 'relative' }}
-                      className='mt-2'
-                      md={4}
-                    >
-                      <div className='middle'>
-                        <h2 style={{ color: setColor.primaryColor }}>hii</h2>
-                      </div>
-                      <Image width={200} height={220} src={item.img} />
-                    </Col>
-                  );
-                }
-              })}
-            </Row>
+            {this.props.loading || this.props.list === undefined ? (
+              <Loader />
+            ) : (
+              <Row>
+                {this.props.list.interior.slice(0, 5).map((item, index) => {
+                  if (index === 0 || index === 1 || index === 2) {
+                    return (
+                      <Col
+                        onClick={() => window.open('/gallery', '_self')}
+                        md={4}
+                      >
+                        <Image width={200} height={220} src={item} />
+                      </Col>
+                    );
+                  } else if (index === 3) {
+                    return (
+                      <Col
+                        onClick={() => window.open('/gallery', '_self')}
+                        className='mt-2'
+                        md={8}
+                      >
+                        <Image width={'100%'} height={220} src={item} />
+                      </Col>
+                    );
+                  } else {
+                    return (
+                      <Col
+                        onClick={() => window.open('/gallery', '_self')}
+                        style={{ opacity: 0.5, position: 'relative' }}
+                        className='mt-2'
+                        md={4}
+                      >
+                        <div className='middle'>
+                          <h2 style={{ color: setColor.primaryColor }}>hii</h2>
+                        </div>
+                        <Image width={200} height={220} src={item} />
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+            )}
           </div>
         </Container>
       </Styles>

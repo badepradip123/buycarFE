@@ -5,7 +5,8 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import styled from 'styled-components';
 import Icon from './Icon';
 import { setColor, setTransition } from '../../styles';
-
+import Loader from './Loader';
+import { useHistory } from 'react-router';
 function NextArrow(props) {
   const { onClick } = props;
   return (
@@ -28,12 +29,14 @@ function PrevArrow(props) {
   );
 }
 
-const Slider2 = (props) => {
+const Slider2 = ({ data, list, loading, title }) => {
+  const history = useHistory();
+
   var settings = {
-    className: 'slider variable-width',
+    className: 'slider',
     slidesToShow: 5,
     slidesToScroll: 1,
-    infinite: true,
+    infinite: false,
     speed: 500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -43,7 +46,7 @@ const Slider2 = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
         },
       },
       {
@@ -66,22 +69,44 @@ const Slider2 = (props) => {
 
   return (
     <Styles className='mt-5'>
+      <h3>{title} </h3>
       <SlickSlider {...settings}>
-        {props.data.map((item, index) => {
-          return (
-            <Col>
-              <Card onClick={() => window.open('/details', '_self')}>
-                <div className='inner'>
-                  <Card.Img src={item.img} />
-                </div>
-                <div className='card-body'>
-                  <Card.Title>{item.title}</Card.Title>
-                  <h4 className='mt-1'>&#8377; 5.19 - 8.02 Lakh*</h4>
-                </div>
-              </Card>
-            </Col>
-          );
-        })}
+        {loading
+          ? [1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => {
+              return (
+                <Col>
+                  <Card>
+                    <div style={{ margin: '10%' }}>
+                      <Loader size={40} />
+                    </div>
+                  </Card>
+                </Col>
+              );
+            })
+          : data.map((item, index) => {
+              return (
+                <Col key={index}>
+                  <Card
+                    onClick={() =>
+                      history.push({
+                        pathname: `/details/${item.id}`,
+                        state: {
+                          id: item.id,
+                        },
+                      })
+                    }
+                  >
+                    <div className='inner'>
+                      <Card.Img src={item.img} />
+                    </div>
+                    <div className='card-body'>
+                      <Card.Title>{item.title}</Card.Title>
+                      <h4 className='mt-1'>&#8377; 5.19 - 8.02 Lakh*</h4>
+                    </div>
+                  </Card>
+                </Col>
+              );
+            })}
       </SlickSlider>
     </Styles>
   );
@@ -90,6 +115,11 @@ const Slider2 = (props) => {
 export default Slider2;
 
 const Styles = styled.div`
+
+h3{
+  margin-left:1.5em;
+  color: ${setColor.primaryColor}
+}
   .arrowStyle {
     position: absolute;
     top: 35%;

@@ -11,6 +11,7 @@ import secondImg from '../../assets/Images/1.jpg';
 import thirdImg from '../../assets/Images/2.jpg';
 import MainGallery from '../../components/ProductDetails/ProductGallery/MainGallery/MainGallery';
 import Schedule from '../../components/ProductDetails/Schedule/Schedule';
+import { fetchProductDetailsRequest } from '../../store/actions';
 
 const projects = [
   {
@@ -95,20 +96,39 @@ const Styles = styled.div`
   }
 `;
 export class ProductDetails extends Component {
+  componentDidMount() {
+    const { id } = this.props.location.state;
+    this.props.fetchProductDetailsRequest(id);
+  }
   render() {
+    const { details, loading } = this.props;
     return (
       <Styles>
         <Schedule />
         <DetailsHead />
-        <DetailsSection />
-        <ProductGallery data={projects} />
+        <DetailsSection list={details} />
+        <ProductGallery
+          data={projects}
+          list={details.images}
+          loading={loading}
+        />
       </Styles>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  // console.log('------', state.details.details);
+  return {
+    loading: state.details.loading,
+    error: state.details.error,
+    isAuthenticated: state.auth.token !== null,
+    details: state.details.details,
+  };
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  fetchProductDetailsRequest,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

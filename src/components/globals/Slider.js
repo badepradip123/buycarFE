@@ -51,7 +51,7 @@ const Slider = (props) => {
       >
         {props.data.map((item, index) => {
           return (
-            <Carousel.Item>
+            <Carousel.Item key={index}>
               <img className='d-block w-100' src={item.img} alt='First slide' />
               <Carousel.Caption>
                 <h3>{item.title}</h3>

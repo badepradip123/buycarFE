@@ -7,6 +7,8 @@ import {
   Image,
   OverlayTrigger,
   Popover,
+  FormControl,
+  InputGroup,
 } from 'react-bootstrap';
 import { RiMenu2Line } from 'react-icons/ri';
 import logo from '../../assets/Images/logo.png';
@@ -17,6 +19,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../globals/Icon';
 import { FaUserCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
+import { GoSearch } from 'react-icons/go';
 
 class Header extends React.Component {
   render() {
@@ -49,7 +52,20 @@ class Header extends React.Component {
                 How It Works
               </Nav.Link>
             </Nav>
-            <Form inline>
+            <Form className='search-box' inline>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>
+                    <Icon>
+                      <GoSearch />
+                    </Icon>
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl type='text' placeholder='Search' />
+              </InputGroup>
+            </Form>
+
+            <Form className='login' inline>
               {this.props.isAuthenticated ? (
                 <OverlayTrigger
                   trigger='click'
@@ -140,6 +156,28 @@ const Styles = styled.div`
     text-align: center;
   }
 
+  .input-group-text {
+    background-color: white;
+    border: none;
+  }
+
+  .form-control {
+    border: none;
+    /* margin-right: 0 !important; */
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+    color: ${setColor.primaryColor};
+  }
+
+  .input-group {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    position: absolute;
+    right: 35%;
+    border-radius: 5px;
+  }
+
   @media only screen and (max-width: 768px) {
     .navbar-nav .nav-link {
       border-bottom: 0;
@@ -149,8 +187,10 @@ const Styles = styled.div`
       color: ${setColor.primaryColor} !important;
     }
 
-    .form-inline {
+    form.login.form-inline {
       margin-left: 3% !important;
+      margin-top: 3%;
+      margin-bottom: 3%;
     }
   }
 

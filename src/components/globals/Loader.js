@@ -1,18 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image } from 'react-bootstrap';
-import loader from '../../assets/loader.gif';
-const Loader = () => {
+import SquareLoader from 'react-spinners/MoonLoader';
+import { setColor } from '../../styles';
+const Loader = ({ size }) => {
   return (
     <LoaderOuter>
-      <Image src={loader} alt='loading' />
+      <SquareLoader
+        size={size || 40}
+        color={setColor.primaryColor}
+        loading={true}
+      />
     </LoaderOuter>
   );
 };
 
 const LoaderOuter = styled.div`
-  text-align: center;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Loader;

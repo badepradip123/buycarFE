@@ -1,10 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { setColor, setFont } from '../../styles';
-const Globals = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans|Anton|Gugi|Lato|Roboto|Sofia&display=swap');
-@import "~react-image-gallery/styles/scss/image-gallery.scss";
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
+const Globals = createGlobalStyle`
 
 *{
  margin:0;

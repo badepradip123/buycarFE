@@ -40,6 +40,8 @@ const DetailsSection = () => {
       setRotate === 'arrowIcon' ? 'arrowIcon rotate' : 'arrowIcon'
     );
   }
+
+  console.log('list---');
   return (
     <Styles>
       <Container className='mainContainer mt-5'>
