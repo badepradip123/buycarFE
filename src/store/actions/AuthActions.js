@@ -46,7 +46,7 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
       dispatch(
         addFlashMessage({
           type: 'success',
-          text: 'You signed up successfully. Welcome!',
+          text: 'You login successfully. Welcome!',
         })
       );
       // console.log('response auth', res.data);

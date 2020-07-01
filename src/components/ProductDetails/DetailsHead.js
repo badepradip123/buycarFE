@@ -25,7 +25,10 @@ class DetailsHead extends Component {
   onBuyCar = () => {
     const { history, isAuthenticated } = this.props;
     if (isAuthenticated) {
-      history.push('/address');
+      history.push({
+        pathname: '/address',
+        state: { carType: 'buycar' },
+      });
     } else {
       history.push('/login');
     }

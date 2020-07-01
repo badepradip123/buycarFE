@@ -95,7 +95,12 @@ class Schedule extends Component {
               </Button>
               <Button
                 as={Link}
-                to='/address'
+                to={{
+                  pathname: '/address',
+                  state: {
+                    carType: 'testdrive',
+                  },
+                }}
                 variant='primary'
                 onClick={this.onSubmit}
               >

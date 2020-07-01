@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Container, Row, Card, Button, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { setColor } from '../../styles';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { fetchAddressRequest, deleteAddressRequest } from '../../store/actions';
 import Loader from '../globals/Loader';
+import { compose } from 'redux';
 
 class AddressCard extends Component {
   componentDidMount() {
@@ -21,6 +22,22 @@ class AddressCard extends Component {
   onDelete = (addrees_id) => {
     console.log('id', addrees_id);
     this.props.deleteAddressRequest(addrees_id);
+  };
+
+  onClick = () => {
+    if (this.props.location.state) {
+      if (
+        this.props.location.state.carType &&
+        this.props.location.state.carType === 'buycar'
+      ) {
+        this.props.history.push('/checkout');
+      } else if (
+        this.props.location.state.carType &&
+        this.props.location.state.carType === 'testdrive'
+      ) {
+        this.props.history.push('/success');
+      }
+    }
   };
 
   render() {
@@ -52,8 +69,9 @@ class AddressCard extends Component {
                           </Card.Text>
 
                           <Button
-                            as={Link}
-                            to='/checkout'
+                            // as={Link}
+                            // to='/checkout'
+                            onClick={this.onClick}
                             block
                             variant='outline-primary'
                           >
@@ -93,7 +111,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { fetchAddressRequest, deleteAddressRequest };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddressCard);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(AddressCard);
 
 const Styles = styled.div`
   .btn-outline-primary {
