@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 import { setColor, setFont } from '../../styles';
 
 const Globals = createGlobalStyle`
+html{
+    scroll-behavior: smooth;
+}
 
 *{
  margin:0;

@@ -29,7 +29,7 @@ function PrevArrow(props) {
   );
 }
 
-const Slider2 = ({ data, list, loading, title }) => {
+const Slider2 = ({ data, list, loading, title, ref }) => {
   const history = useHistory();
 
   var settings = {
@@ -68,7 +68,7 @@ const Slider2 = ({ data, list, loading, title }) => {
   };
 
   return (
-    <Styles className='mt-5'>
+    <Styles ref={ref} className='mt-5'>
       <h3>{title} </h3>
       <SlickSlider {...settings}>
         {loading

@@ -40,7 +40,9 @@ class App extends React.Component {
           <Route path='/address' component={Address} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/checkout' component={Payment} />
+          {this.props.isAuthenticated && (
+            <Route path='/checkout' component={Payment} />
+          )}
           <Redirect to='/' />
         </Switch>
 

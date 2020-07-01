@@ -51,7 +51,7 @@ export const userLoginRequest = (userData, history) => async (dispatch) => {
       );
       // console.log('response auth', res.data);
       dispatch(authSuccess(res.data.token, res.data.user));
-      history.push('/');
+      history.goBack();
     })
     .catch((err) => {
       console.log('error', err.response.data);

@@ -80,10 +80,22 @@ const DetailsSection = () => {
               <Card.Body>
                 <Row>
                   <Col>
-                    <p>Engine</p>
+                    <p>Engine Type </p>
                   </Col>
                   <Col>
-                    <p>1248cc, 4 Cylinders Inline, 4 Valves/Cylinder, DOHC</p>
+                    <p>K-Series Petrol engine with VVT</p>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Accordion.Collapse>
+            <Accordion.Collapse eventKey='0'>
+              <Card.Body>
+                <Row>
+                  <Col>
+                    <p>Fuel Type </p>
+                  </Col>
+                  <Col>
+                    <p>Petrol, Diesel</p>
                   </Col>
                 </Row>
               </Card.Body>
@@ -102,7 +114,7 @@ const DetailsSection = () => {
                 eventKey='1'
               >
                 <Row>
-                  <Col>Engine & Transmission</Col>
+                  <Col>Safety</Col>
                   <Col>
                     <Icon className={`${setRotate}`}>
                       <BsChevronDown />
@@ -114,10 +126,10 @@ const DetailsSection = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <p>Engine</p>
+                      <p>Airbags </p>
                     </Col>
                     <Col>
-                      <p>1248cc, 4 Cylinders Inline, 4 Valves/Cylinder, DOHC</p>
+                      <p>2 Airbags (Driver, Passenger)</p>
                     </Col>
                   </Row>
                 </Card.Body>
@@ -126,10 +138,22 @@ const DetailsSection = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <p>Engine</p>
+                      <p>Child Seat Anchor Points</p>
                     </Col>
                     <Col>
-                      <p>1248cc, 4 Cylinders Inline, 4 Valves/Cylinder, DOHC</p>
+                      <p>Yes</p>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Accordion.Collapse>
+              <Accordion.Collapse eventKey='1'>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <p>Seat Belt Warning</p>
+                    </Col>
+                    <Col>
+                      <p>Yes</p>
                     </Col>
                   </Row>
                 </Card.Body>

@@ -124,7 +124,7 @@ export class Payment extends Component {
 
                     <BtnOutline>
                       <Button variant='outline-primary' type='submit'>
-                        PAY ($12.22)
+                        PAY (&#8377;12.22)
                       </Button>
                     </BtnOutline>
                   </Form>
@@ -140,7 +140,7 @@ export class Payment extends Component {
                       <Card.Text>Delivery Charges</Card.Text>
                     </Col>
                     <Col md={4}>
-                      <Card.Text>$12.22</Card.Text>
+                      <Card.Text>&#8377;12.22</Card.Text>
                     </Col>
                   </Row>
                 </Card.Body>

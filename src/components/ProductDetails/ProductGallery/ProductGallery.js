@@ -32,7 +32,6 @@ const Styles = styled.div`
 
 class ProductGallery extends React.Component {
   render() {
-    console.log('list', this.props.list);
     return (
       <Styles>
         <h2 className='h2'>Gallery</h2>
@@ -43,14 +42,14 @@ class ProductGallery extends React.Component {
               <Loader />
             ) : (
               <Row>
-                {this.props.list.interior.slice(0, 5).map((item, index) => {
+                {this.props.data.slice(0, 5).map((item, index) => {
                   if (index === 0 || index === 1 || index === 2) {
                     return (
                       <Col
                         onClick={() => window.open('/gallery', '_self')}
                         md={4}
                       >
-                        <Image width={200} height={220} src={item} />
+                        <Image width={200} height={220} src={item.img} />
                       </Col>
                     );
                   } else if (index === 3) {
@@ -60,7 +59,7 @@ class ProductGallery extends React.Component {
                         className='mt-2'
                         md={8}
                       >
-                        <Image width={'100%'} height={220} src={item} />
+                        <Image width={'100%'} height={220} src={item.img} />
                       </Col>
                     );
                   } else {
@@ -74,7 +73,7 @@ class ProductGallery extends React.Component {
                         <div className='middle'>
                           <h2 style={{ color: setColor.primaryColor }}>hii</h2>
                         </div>
-                        <Image width={200} height={220} src={item} />
+                        <Image width={200} height={220} src={item.img} />
                       </Col>
                     );
                   }

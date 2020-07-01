@@ -8,31 +8,31 @@ import FilterSection from '../../components/Home/FilterSection';
 import Slider2 from '../../components/globals/Slider2';
 import { fetchProductListRequest } from '../../store/actions';
 
-const test = {
-  technical_specifications: [
-    {
-      engine: [
-        { engine: 'Test' },
-        { engine_type: 'Test' },
-        { fuel_type: 'Test' },
-      ],
-    },
-    {
-      test: [
-        { engine: 'Test' },
-        { engine_type: 'Test' },
-        { fuel_type: 'Test' },
-      ],
-    },
-    {
-      test2: [
-        { engine: 'Test' },
-        { engine_type: 'Test' },
-        { fuel_type: 'Test' },
-      ],
-    },
-  ],
-};
+// const test = {
+//   technical_specifications: [
+//     {
+//       engine: [
+//         { engine: 'Test' },
+//         { engine_type: 'Test' },
+//         { fuel_type: 'Test' },
+//       ],
+//     },
+//     {
+//       test: [
+//         { engine: 'Test' },
+//         { engine_type: 'Test' },
+//         { fuel_type: 'Test' },
+//       ],
+//     },
+//     {
+//       test2: [
+//         { engine: 'Test' },
+//         { engine_type: 'Test' },
+//         { fuel_type: 'Test' },
+//       ],
+//     },
+//   ],
+// };
 
 const projects = [
   {
@@ -91,34 +91,67 @@ const projects = [
   },
 ];
 export class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.newCarRef = React.createRef();
+    this.popularCarRef = React.createRef();
+  }
+
   componentDidMount() {
+    // console.log(this.props);
     // this.props.fetchProductListRequest();
   }
+
+  componentDidUpdate() {
+    if (
+      this.props.location.state &&
+      this.props.location.state.scroll &&
+      this.props.location.state.scroll.length > 0
+    ) {
+      this.scrollToMyRef(this.props.location.state.scroll);
+    }
+    // this.props.fetchProductListRequest();
+  }
+
+  scrollToMyRef = (ref) => {
+    console.log('red', ref);
+
+    if (ref === 'newCarRef') {
+      window.scrollTo(0, this.newCarRef.current.offsetTop);
+    } else if (ref === 'popularCarRef') {
+      window.scrollTo(0, this.popularCarRef.current.offsetTop);
+    }
+  };
 
   render() {
     return (
       <div>
         <Slider data={projects} />
         {/* <FilterSection /> */}
-        <Slider2
-          title='Latest Cars'
-          data={projects}
-          loading={this.props.loading}
-          // list={this.props.list}
-        />
-        <Slider2
-          title='Popular Cars'
-          data={projects}
-          loading={this.props.loading}
-          // list={this.props.list}
-        />
-        {test.technical_specifications.map((item, index) => {
+        <div ref={this.newCarRef}>
+          <Slider2
+            title='New Cars'
+            data={projects}
+            loading={this.props.loading}
+
+            // list={this.props.list}
+          />
+        </div>
+        <div ref={this.popularCarRef}>
+          <Slider2
+            title='Popular Cars'
+            data={projects}
+            loading={this.props.loading}
+            // list={this.props.list}
+          />
+        </div>
+        {/* {test.technical_specifications.map((item, index) => {
           let valuesd = Object.keys(item)[0];
           {
             console.log('adafafa-----fafaf---', item[valuesd]);
           }
           return null;
-        })}
+        })} */}
       </div>
     );
   }

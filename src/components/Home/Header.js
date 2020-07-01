@@ -26,7 +26,13 @@ class Header extends React.Component {
     return (
       <Styles>
         <Navbar expand='lg'>
-          <Navbar.Brand className='ml-3' as={Link} to='/'>
+          <Navbar.Brand
+            className='ml-3'
+            as={Link}
+            to={{
+              pathname: '/',
+            }}
+          >
             <Image className='logo' src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav'>
@@ -36,21 +42,45 @@ class Header extends React.Component {
           </Navbar.Toggle>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mr-auto'>
-              <Nav.Link as={Link} to='/'>
+              <Nav.Link
+                as={Link}
+                to={{
+                  pathname: '/',
+                  state: {
+                    scroll: 'newCarRef',
+                  }, // your data array of objects
+                }}
+              >
                 New Car
               </Nav.Link>
-              <Nav.Link as={Link} to='/'>
-                Buy Car
+              <Nav.Link
+                as={Link}
+                to={{
+                  pathname: '/',
+                  state: {
+                    scroll: 'popularCarRef',
+                  }, // your data array of objects
+                }}
+              >
+                Popular Car
               </Nav.Link>
-              <Nav.Link as={Link} to='/'>
+              {/* <Nav.Link as={Link} to='/'>
                 Test Drive
+              </Nav.Link> */}
+              <Nav.Link
+                as={Link}
+                to={{
+                  pathname: '/',
+                  state: {
+                    scroll: 'popularCarRef',
+                  }, // your data array of objects
+                }}
+              >
+                Contact us
               </Nav.Link>
-              <Nav.Link as={Link} to='/'>
-                Reviews
-              </Nav.Link>
-              <Nav.Link as={Link} to='/'>
+              {/* <Nav.Link as={Link} to='/'>
                 How It Works
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
             <Form className='search-box' inline>
               <InputGroup>
