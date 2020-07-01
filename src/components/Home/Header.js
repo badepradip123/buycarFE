@@ -15,13 +15,19 @@ import logo from '../../assets/Images/logo.png';
 import { PrimaryBtnOutline, BtnOutline } from '../globals/Button';
 import styled from 'styled-components';
 import { setColor, setShadow } from '../../styles';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Icon from '../globals/Icon';
 import { FaUserCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { GoSearch } from 'react-icons/go';
+import { compose } from 'redux';
 
 class Header extends React.Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.history.push('/list');
+  };
+
   render() {
     return (
       <Styles>
@@ -82,7 +88,7 @@ class Header extends React.Component {
                 How It Works
               </Nav.Link> */}
             </Nav>
-            <Form className='search-box' inline>
+            <Form onSubmit={this.handleSubmit} className='search-box' inline>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>
@@ -153,7 +159,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Header);
 
 const Styles = styled.div`
   .navbar {

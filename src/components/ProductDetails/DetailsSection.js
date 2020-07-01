@@ -46,7 +46,7 @@ const DetailsSection = () => {
     <Styles>
       <Container className='mainContainer mt-5'>
         <div>
-          <h2 className='h2'>Vitara Brezza VDI (O) Specifications</h2>
+          <h2 className='h2'>Specifications</h2>
         </div>
         <Accordion id='1' className='mt-3'>
           <Card>
@@ -104,7 +104,7 @@ const DetailsSection = () => {
         </Accordion>
         <div>
           <div>
-            <h2 className='h2'>Vitara Brezza VDI (O) Features</h2>
+            <h2 className='h2'>Features</h2>
           </div>
           <Accordion className='mt-3'>
             <Card>

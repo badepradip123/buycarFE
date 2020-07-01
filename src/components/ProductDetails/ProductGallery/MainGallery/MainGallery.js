@@ -1,57 +1,86 @@
 import React from 'react';
 import { Card, Image } from 'react-bootstrap';
 import SlickSlider from 'react-slick';
+import { FiXCircle } from 'react-icons/fi';
 import styled from 'styled-components';
 import { setColor } from '../../../../styles';
 import firstImg from '../../../../assets/Images/brezza.jpg';
 import secondImg from '../../../../assets/Images/1.jpg';
 import thirdImg from '../../../../assets/Images/2.jpg';
+import Icon from '../../../globals/Icon';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
 const projects = [
   {
-    img: firstImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/7083/1587199027573/front-left-side-47.jpg',
+    title: 'Maruti Swift',
+    price: '5.19 - 8.02 Lakh*',
+    id: 1,
   },
   {
-    img: secondImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/630x420/Maruti/Maruti-Baleno/6780/1564491336282/front-left-side-47.jpg?tr=w-456',
+    title: 'Maruti Baleno',
+    price: '5.63 - 8.96 Lakh*',
+    id: 1,
   },
   {
-    img: thirdImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Ignis/7584/1583132645318/front-left-side-47.jpg',
+    title: 'Maruti Ignis',
+    price: '4.89 - 7.19 Lakh*',
+    id: 1,
   },
   {
-    img: firstImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Venue/7672/1584072033906/front-left-side-47.jpg',
+    title: 'Hyundai Venue',
+    price: '6.69 - 11.5 Lakh*',
+    id: 1,
   },
   {
-    img: secondImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Vitara-Brezza/7295/1585567830503/front-left-side-47.jpg',
+    title: 'Maruti Vitara Brezza',
+    price: '7.34 - 11.4 Lakh*',
+    id: 1,
   },
   {
-    img: thirdImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/7083/1587199027573/front-left-side-47.jpg',
+    title: 'Maruti Swift',
+    price: '5.19 - 8.02 Lakh*',
+    id: 1,
   },
   {
-    img: firstImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/630x420/Maruti/Maruti-Baleno/6780/1564491336282/front-left-side-47.jpg?tr=w-456',
+    title: 'Maruti Baleno',
+    price: '5.63 - 8.96 Lakh*',
+    id: 1,
   },
   {
-    img: secondImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Ignis/7584/1583132645318/front-left-side-47.jpg',
+    title: 'Maruti Ignis',
+    price: '4.89 - 7.19 Lakh*',
+    id: 1,
   },
   {
-    img: thirdImg,
-    title: 'Breeza',
-    subTitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Venue/7672/1584072033906/front-left-side-47.jpg',
+    title: 'Hyundai Venue',
+    price: '6.69 - 11.5 Lakh*',
+    id: 1,
+  },
+  {
+    img:
+      'https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Vitara-Brezza/7295/1585567830503/front-left-side-47.jpg',
+    title: 'Maruti Vitara Brezza',
+    price: '7.34 - 11.4 Lakh*',
+    id: 1,
   },
 ];
 
@@ -149,6 +178,8 @@ class MainGallery extends React.Component {
   }
 }
 
+export default compose(withRouter)(MainGallery);
+
 const Styles = styled.div`
   .h2 {
     text-align: center;
@@ -163,6 +194,11 @@ const Styles = styled.div`
     width: 100px;
     margin: 0 auto;
     margin-top: 20px;
+  }
+
+  .closeIcon {
+    float: right;
+    margin-right: 2rem;
   }
 
   .card {
@@ -197,5 +233,3 @@ const Styles = styled.div`
     }
   }
 `;
-
-export default MainGallery;

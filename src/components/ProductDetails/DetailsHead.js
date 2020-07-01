@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { onSchedule } from '../../store/actions';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import Loader from '../globals/Loader';
 
 class DetailsHead extends Component {
   onBookDrive = () => {
@@ -31,48 +32,55 @@ class DetailsHead extends Component {
   };
 
   render() {
+    const { item } = this.props.location.state;
     return (
       <Styles>
         <Container className='mainContainer mt-5'>
-          <div className='leftContainer'>
-            <Image alt='Product Image' src={Product} rounded />
-          </div>
-          <div className='rightContainer'>
-            <h2>Maruti Suzuki Vitara Brezza VDI (O)</h2>
-            <h3 className='text-muted'>Last Record Price</h3>
-            <h3 className='price'>&#8377; 7.94 Lakh</h3>
-            <Row class='detialsContainer'>
-              <Icon className='ml-3 mr-1' color={setColor.lightBlack}>
-                <MdAirlineSeatReclineNormal />
-              </Icon>
-              <p>5 seats</p>
-              <Icon className='ml-3 mr-1' color={setColor.lightBlack}>
-                <MdLocalGasStation />
-              </Icon>
-              <p>Petrol</p>
-            </Row>
-            <p className='text-muted'>*Ex-showroom Price in Pune</p>
-            <Row className='btn-container'>
-              <Col sm>
-                <BtnOutline>
-                  <Button
-                    onClick={this.onBookDrive}
-                    variant='outline-primary'
-                    block
-                  >
-                    Book Test Drive
-                  </Button>
-                </BtnOutline>
-              </Col>
-              <Col sm>
-                <BtnOutline>
-                  <Button onClick={this.onBuyCar} variant='primary' block>
-                    Buy Now
-                  </Button>
-                </BtnOutline>
-              </Col>
-            </Row>
-          </div>
+          {this.props.loading ? (
+            <Loader />
+          ) : (
+            <React.Fragment>
+              <div className='leftContainer'>
+                <Image alt='Product Image' src={item.img} rounded />
+              </div>
+              <div className='rightContainer'>
+                <h2>{item.title}</h2>
+                <h3 className='text-muted'>Last Record Price</h3>
+                <h3 className='price'>&#8377; {item.price}</h3>
+                <Row class='detialsContainer'>
+                  <Icon className='ml-3 mr-1' color={setColor.lightBlack}>
+                    <MdAirlineSeatReclineNormal />
+                  </Icon>
+                  <p>5 seats</p>
+                  <Icon className='ml-3 mr-1' color={setColor.lightBlack}>
+                    <MdLocalGasStation />
+                  </Icon>
+                  <p>Petrol</p>
+                </Row>
+                <p className='text-muted'>*Ex-showroom Price in Pune</p>
+                <Row className='btn-container'>
+                  <Col sm>
+                    <BtnOutline>
+                      <Button
+                        onClick={this.onBookDrive}
+                        variant='outline-primary'
+                        block
+                      >
+                        Book Test Drive
+                      </Button>
+                    </BtnOutline>
+                  </Col>
+                  <Col sm>
+                    <BtnOutline>
+                      <Button onClick={this.onBuyCar} variant='primary' block>
+                        Buy Now
+                      </Button>
+                    </BtnOutline>
+                  </Col>
+                </Row>
+              </div>
+            </React.Fragment>
+          )}
         </Container>
       </Styles>
     );

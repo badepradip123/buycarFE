@@ -163,4 +163,10 @@ const Styles = styled.div`
   .border-primary {
     border-color: ${setColor.primaryColor} !important;
   }
+
+  @media only screen and (max-width: 320px) {
+    .card-body {
+      padding: 0;
+    }
+  }
 `;

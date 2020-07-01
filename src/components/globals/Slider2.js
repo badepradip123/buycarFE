@@ -92,6 +92,7 @@ const Slider2 = ({ data, list, loading, title, ref }) => {
                         pathname: `/details/${item.id}`,
                         state: {
                           id: item.id,
+                          item: item,
                         },
                       })
                     }
@@ -101,7 +102,7 @@ const Slider2 = ({ data, list, loading, title, ref }) => {
                     </div>
                     <div className='card-body'>
                       <Card.Title>{item.title}</Card.Title>
-                      <h4 className='mt-1'>&#8377; 5.19 - 8.02 Lakh*</h4>
+                      <h4 className='mt-1'>&#8377; {item.price}</h4>
                     </div>
                   </Card>
                 </Col>

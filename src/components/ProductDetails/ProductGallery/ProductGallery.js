@@ -6,7 +6,7 @@ import Loader from '../../globals/Loader';
 
 const Styles = styled.div`
   .imagesConatiner {
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     padding: 25px 40px 20px 20px;
     border: 2px solid ${setColor.primaryColor};
@@ -27,6 +27,24 @@ const Styles = styled.div`
     -ms-transform: translate(-50%, -50%);
     text-align: center;
     z-index: 500;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .imagesConatiner {
+      width: 95%;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .imagesConatiner {
+      width: 68%;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    .imagesConatiner {
+      width: 85%;
+    }
   }
 `;
 
